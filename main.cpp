@@ -63,8 +63,8 @@ vector<Particle> Create_Particle_Vector(int particle_count, sf::RenderWindow* wi
         float randomX_float = randomX;
         float randomY_float = randomY;
 
-        particle.xVel = randomX_float / 30;
-        particle.yVel = randomY_float / 30;
+        particle.xVel = randomX_float / 15;
+        particle.yVel = randomY_float / 15;
 
 //        cout << "velconx " << randomX_float << endl;
 //        cout << "velcony " << randomY_float << endl;
@@ -278,12 +278,6 @@ int main() {
             }
         }
 
-//        if(not window_vector.empty())
-//        {
-//            cout << window_vector.at(0)->getPosition().x << endl;
-//            cout << window_vector.at(0)->getPosition().y << endl;
-//        }
-
         //container UI blue square creation
         if (not window_vector.empty()) {
             for (int s = 0; s < window_vector.size(); s++) {
@@ -353,34 +347,25 @@ int main() {
         }
         if(particle_add_val==1)
         {
-            sf::Text frame_text_5("(+5)", font, 18);
+            sf::Text frame_text_5("(+1)", font, 18);
             frame_text_5.setFillColor(sf::Color::White);
             frame_text_5.setPosition(10, 20);
             master_window.draw(frame_text_5);
         }
 
-//        cout << window_vector.size() << endl;
 
-        //adjacency handler test 1
-//        if (window_vector.size()==2)
-//        {
-//            cout << window_vector.at(0)->getPosition().x - window_vector.at(1)->getPosition().x << endl;
-//            //right adjacency
-//            if(window_vector.at(0)->getPosition().x - window_vector.at(1)->getPosition().x < -485 and window_vector.at(0)->getPosition().x - window_vector.at(1)->getPosition().x > -505)
-//            {
-//                cout << "FLAG1" << endl;
-//                window_vector.at(1)->draw(valid_line_vert);
-//            }
-//            //left adjacency
-//            if(window_vector.at(0)->getPosition().x - window_vector.at(1)->getPosition().x < 505 and window_vector.at(0)->getPosition().x - window_vector.at(1)->getPosition().x > 485)
-//            {
-//                cout << "FLAG2" << endl;
-//                window_vector.at(0)->draw(valid_line_vert);
-////                window_vector.at(0)->draw(valid_line_vert);
-//            }
-//        }
-
-//          WIP ADJACENCY CHECKER
+//          ADJACENCY CHECKER
+        //reset values for adj
+        for(int s = 0; s < window_vector.size(); s++) {
+            adj_vector.at(s).at(0) = 0;
+            adj_vector.at(s).at(1) = 99;
+            adj_vector.at(s).at(2) = 1;
+            adj_vector.at(s).at(3) = 99;
+            adj_vector.at(s).at(4) = 2;
+            adj_vector.at(s).at(5) = 99;
+            adj_vector.at(s).at(6) = 3;
+            adj_vector.at(s).at(7) = 99;
+        }
         if(not window_vector.empty() and window_vector.size() >= 2)
         {
             for(int s = 0; s < window_vector.size(); s++)
@@ -388,11 +373,6 @@ int main() {
                 for(int j = 0; j < window_vector.size(); j++)
                 {
                     //reset default vector values
-                    adj_vector.at(s).at(0) = 0;
-                    adj_vector.at(s).at(2) = 1;
-                    adj_vector.at(s).at(4) = 2;
-                    adj_vector.at(s).at(6) = 3;
-
                     if(s!=j)
                     {
                         //right adjacency
